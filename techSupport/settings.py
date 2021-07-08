@@ -33,13 +33,16 @@ ALLOWED_HOSTS = ['boiling-savannah-07757.herokuapp.com','127.0.0.1' ,'localhost'
 # Application definition
 
 INSTALLED_APPS = [
-    'TechSup',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'TechSup',
+
+    
 ]
 
 MIDDLEWARE = [
@@ -82,9 +85,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+       
     }
 }
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
