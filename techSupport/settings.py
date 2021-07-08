@@ -62,7 +62,7 @@ ROOT_URLCONF = 'techSupport.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/templates/main.html/default'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
