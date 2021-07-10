@@ -9,10 +9,13 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+from configparser import ConfigParser
 import os
+
 import django_heroku
 from pathlib import Path
 #import dj_database_url
+import heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -141,3 +144,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 django_heroku.settings(locals())
+
+#heroku config: set 
+NODE_MODULES_CACHE= False
