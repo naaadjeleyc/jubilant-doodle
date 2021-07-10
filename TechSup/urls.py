@@ -8,4 +8,8 @@ urlpatterns = [
 
     path('update_item/', views.checkout, name="update_item"),
 
+    path('viewgraph/', views.viewgraph, name="viewgraph"),
+
+    path('pie-chart/', views.pie_chart, name='pie-chart'),
+
 ]

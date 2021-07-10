@@ -3,6 +3,9 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .models import * 
 
+#from django.shortcuts import render
+#from .models import City
+
 def store(request):
 
 	if request.user.is_authenticated:
@@ -27,10 +30,12 @@ def cart(request):
 		customer = request.user.customer
 		order, created = Order.objects.get_or_create(customer=customer, complete=False)
 		items = order.orderitem_set.all()
+		cartItems = order.get_cart_items
 	else:
 		#Create empty cart for now for non-logged in user
 		items = []
 		order ={'get_cart_total':0, 'get_cart_items':0}
+		cartItems = order['get_cart_items']
 
 	context = {'items':items, 'order':order}
 	return render(request, 'store/cart.html', context)
@@ -41,10 +46,12 @@ def checkout(request):
 		customer = request.user.customer
 		order, created = Order.objects.get_or_create(customer=customer, complete=False)
 		items = order.orderitem_set.all()
+		cartItems = order.get_cart_items
 	else:
 		#Create empty cart for now for non-logged in user
 		items = []
 		order ={'get_cart_total':0, 'get_cart_items':0}
+		cartItems = order['get_cart_items']
 
 	context = {'items':items, 'order':order}
 	return render(request, 'store/checkout.html', context)
@@ -74,3 +81,22 @@ def updateItem(request):
 		orderItem.delete()
 
 	return JsonResponse('Item was added', safe=False)	
+
+def viewgraph(request):
+		context ={}
+		return render(request, 'store/viewgraph.html', context)
+
+def pie_chart(request):
+    labels = []
+    data = []
+
+    queryset = City.objects.order_by('-population')[:5]
+    for city in queryset:
+        labels.append(city.name)
+        data.append(city.population)
+
+    return render(request, 'pie_chart.html', {
+        'labels': labels,
+        'data': data,
+    })
+
