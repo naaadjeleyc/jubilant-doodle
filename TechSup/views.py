@@ -1,4 +1,5 @@
 import json
+from django.views.generic import TemplateView
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import * 
@@ -85,6 +86,14 @@ def updateItem(request):
 def viewgraph(request):
 		context ={}
 		return render(request, 'store/viewgraph.html', context)
+
+class CityChartView(TemplateView):
+	template_name= 'store/viewgraph.html'
+
+	def get_context_data(self, **kwags):
+		context = super().get_context_data(**kwags)
+		context["qs"]= City.objects.all()
+		return context
 
 def pie_chart(request):
     labels = []

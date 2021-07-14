@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-kc)j)spl5*n&*7pr0n%5o&&1dn%-z-nkdd-ri3bmkne8ef(9e$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['techsup.herokuapp.com','127.0.0.1' ,'localhost']
+ALLOWED_HOSTS = ['pacific-dawn-58325.herokuapp.com','127.0.0.1' ,'localhost']
 
 
 # Application definition
@@ -65,7 +65,7 @@ ROOT_URLCONF = 'techSupport.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/templates/main.html/default'],
+        'DIRS': [os.path.join(BASE_DIR,'/templates/main.html/default')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
