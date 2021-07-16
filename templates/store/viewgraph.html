@@ -1,5 +1,5 @@
 {%extends 'store/base.html' %}
-{%block title %} Club ranking {%endblock title %}
+{%block title %} customers ranking {%endblock title %}
 
 {% block scripts %}
 <script>
@@ -8,10 +8,10 @@ $(document).ready(function(){
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: [{% for item in qs %} '{{item.name}}',{% endfor %}],
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: 'number of customers',
+                data: [{% for item in qs %}{{item.population}},{% endfor %}],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -44,6 +44,6 @@ $(document).ready(function(){
 {% endblock scripts %}
 
 {% block content %}
-<canvas id="myChart" width="400" height="400"></canvas>
+<canvas id="myChart" width="350" height="150"></canvas>
 
 {% endblock content %}

@@ -2,7 +2,8 @@ import json
 from django.views.generic import TemplateView
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import * 
+from .models import *
+#from  techSupport.TechSup.models import City
 
 #from django.shortcuts import render
 #from .models import City
@@ -83,29 +84,14 @@ def updateItem(request):
 
 	return JsonResponse('Item was added', safe=False)	
 
-def viewgraph(request):
-		context ={}
-		return render(request, 'store/viewgraph.html', context)
 
 class CityChartView(TemplateView):
 	template_name= 'store/viewgraph.html'
 
-	def get_context_data(self, **kwags):
-		context = super().get_context_data(**kwags)
+	def get_context_data(self, *args, **kwags):
+		context = super(CityChartView,self).get_context_data(*args, **kwags)
 		context["qs"]= City.objects.all()
 		return context
 
-def pie_chart(request):
-    labels = []
-    data = []
 
-    queryset = City.objects.order_by('-population')[:5]
-    for city in queryset:
-        labels.append(city.name)
-        data.append(city.population)
-
-    return render(request, 'pie_chart.html', {
-        'labels': labels,
-        'data': data,
-    })
 

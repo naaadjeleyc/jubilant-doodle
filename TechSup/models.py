@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+
+
+
+
 # Create your models here.
 
 class Customer(models.Model):
@@ -77,18 +81,16 @@ class ShippingAddress(models.Model):
 		return self.address
 
 
-class viewgraph(models.Model):
-	country = models.CharField(max_length=200, null=False)	
-
-	def __str__(self):
-		return self.address	
-
-
+	
 class Country(models.Model):
-    name = models.CharField(max_length=30)
-
+    name= models.CharField(max_length=30)
+	
+	
+	
 class City(models.Model):
-    name = models.CharField(max_length=30)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    population = models.PositiveIntegerField()
-def __str__(self):return "{}-{}".format(self.name, self.population)	
+	name = models.CharField(max_length=30)
+	country = models.ForeignKey(Country, on_delete=models.CASCADE)
+	population = models.PositiveIntegerField()
+	
+	def __str__(self):
+		return "{}-{}".format(self.name, self.population)	
