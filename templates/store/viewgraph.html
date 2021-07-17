@@ -1,4 +1,5 @@
 {%extends 'store/base.html' %}
+{% load static %}
 {%block title %} customers ranking {%endblock title %}
 
 {% block scripts %}
@@ -44,6 +45,32 @@ $(document).ready(function(){
 {% endblock scripts %}
 
 {% block content %}
-<canvas id="myChart" width="350" height="150"></canvas>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{%url 'store' %}">TECH SUPPORT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{%url 'store' %}">Store<span class="sr-only"></span></a>
+                </li> -->
+                
+            </ul>
+            <div class = "form-inline my-2 my-lg-0" >
+                <a href="{%url 'store' %}"class="btn btn-primary">Back</a>
+            </div>
+            </div>
+    </div>
+    </nav>
+    
+
+
+<div class ="container">
+    <canvas id="myChart" width="350" height="150"></canvas>
+</div>
+
 
 {% endblock content %}

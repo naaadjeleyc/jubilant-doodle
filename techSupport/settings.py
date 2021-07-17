@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-     'django.contrib.staticfiles',
-
+    'django.contrib.staticfiles',
     'TechSup',
 
     
@@ -131,8 +130,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+PROJECT_ROOT = os.path.normpath(os.path.dirname(__file__))
 STATICFILES_DIRS = [ 
-    os.path.join(BASE_DIR, 'static')]
+    os.path.join(PROJECT_ROOT, '..','static'),
+    ]
 
 MEDIA_URL ='/images/'
 
@@ -142,7 +143,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 
