@@ -1,12 +1,13 @@
 import json
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, request
+#from django.views.generic.list import ListView
 from .models import *
-#from  techSupport.TechSup.models import City
+import datetime
 
-#from django.shortcuts import render
-#from .models import City
+
+
 
 def store(request):
 
@@ -84,9 +85,30 @@ def updateItem(request):
 
 	return JsonResponse('Item was added', safe=False)	
 
-	# def add_to_cart(request,slug):
-	# 	product=get_object_or_404(Product,slug=slug)
-	# 	orderItem= orderItem.objects.create(product=product)
+def processOrder(request):
+	transaction_id = datetime.datetime.now().timestamp()
+	data = json.loads(request.body)
+	if request.user.is_authenticated:
+		customer = request.user.customer
+		order, created = Order.objects.get_or_create(customer=customer, complete=False)
+		total = float(data['form']['total'])
+		order.transaction_id = transaction_id
+
+		if total == order.get_cart_total:
+			order.complete = True
+		order.save()
+		if order.shipping == True:
+			ShippingAddress.objects.create(
+			customer=customer,
+			order=order,
+			address=data['shipping']['address'],
+			city=data['shipping']['city'],
+			state=data['shipping']['state'],
+			zipcode=data['shipping']['zipcode'],
+			)
+		else:
+			print('User is not logged in')
+		return JsonResponse('Payment submitted..', safe=False)
 
 
 class CityChartView(TemplateView):
@@ -97,5 +119,17 @@ class CityChartView(TemplateView):
 		context["qs"]= City.objects.all()
 		return context
 
+def searchproducts(request):
+	if request.method =="POST":
+		searched = request.POST['searched']
+		cities=City.objects.filter(name__contains=searched)
+		return render(request,'store/search.html',{'searched':searched, 'cities':cities})
+	else:
+		return render(request,'store/search.html',{})
+			
+
+   
+
+   
 
 

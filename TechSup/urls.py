@@ -11,7 +11,9 @@ urlpatterns = [
 
     path('update_item/', views.checkout, name="update_item"),
 
-    url('viewgraph/', views.CityChartView.as_view(), name= "view")
+    url('viewgraph/', views.CityChartView.as_view(), name= "view"),
+
+    url('search/', views.searchproducts, name="search"),
 
     
 
