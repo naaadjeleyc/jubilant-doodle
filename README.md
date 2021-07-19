@@ -9,19 +9,32 @@ virtualenv
 # setup instructions
 pull the project using git
    git clone https://github.com/naaadjeleyc/jubilant-doodle.git
+   
+  
 create a virtualenv using virtualenv
+
+
    python -m pip install --upgrade pip
+   
    pip install virtualenv
+   
    virtualenv .venv
-activate it
+   
+# activate it
    source .venv/bin/activate
+   
 or activate Windows
+
    .venv/bin/activate.bat
-install dependencies from the requirements.txt file
+# install dependencies from the requirements.txt file
    pip install -r requirements.txt
+   
 migrate the database tables
+
    python manage.py migrate
+   
 start a development server using
+
    python manage.py runserver
 
  # Testing
