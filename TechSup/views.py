@@ -128,7 +128,8 @@ def searchproducts(request):
 		return render(request,'store/search.html',{})
 			
 
-   
+def handle_not_found(request, exception):
+	 return render (request, 'store/not-found.html')  
 
    
 
