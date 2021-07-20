@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
 
-
-
 # Create your models here.
 
 class Customer(models.Model):

@@ -9,11 +9,13 @@ urlpatterns = [
 
     path('checkout/', views.checkout, name="checkout"),
 
-    path('update_item/', views.checkout, name="update_item"),
+    path('update_item/', views.updateItem, name="update_item"),
 
     url('viewgraph/', views.CityChartView.as_view(), name= "view"),
 
     url('search/', views.searchproducts, name="search"),
+    path('process_order/',views.processOrder,name="process_order"),
+    
 
     
 

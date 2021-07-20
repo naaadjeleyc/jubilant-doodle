@@ -74,6 +74,7 @@ def updateItem(request):
 	orderItem, created= OrderItem.objects.get_or_create(order=order, product=product)
 
 	if action == 'add':
+		print('add updateitems')
 		orderItem.quantity = (orderItem.quantity + 1)
 	elif action == 'remove':
 		orderItem.quantity = (orderItem.quantity - 1)
@@ -127,9 +128,9 @@ def searchproducts(request):
 	else:
 		return render(request,'store/search.html',{})
 			
-
 def handle_not_found(request, exception):
-	 return render (request, 'store/not-found.html')  
+	 return render (request, 'store/not-found.html') 
+   
 
    
 
