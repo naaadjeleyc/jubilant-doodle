@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # Create your models here.
@@ -9,9 +11,22 @@ class Customer(models.Model):
 	user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200, null=True)
 	email = models.CharField(max_length=200)
+	address = models.TextField()
 
 	def __str__(self):
-		return self.name
+		return f'{self.name}, {self.address}'
+
+	class Meta:
+		db_table = 'customer'
+		
+	@receiver(post_save, sender=User)
+	def create_user_profile(sender, instance, created, **kwargs):
+		if created:
+			Customer.objects.create(user=instance)
+	
+	@receiver(post_save, sender=User)
+	def save_user_profile(sender, instance, **kwargs):
+		instance.customer.save()	
 
 class Product(models.Model):
 	name = models.CharField(max_length=200)
