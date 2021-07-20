@@ -6,6 +6,7 @@ urlpatterns = [
     #path('login_user', views.login_user, name="login"),
 
     url('login_user/', views.login_user, name="login"),
+    url('register/', views.UserRegisterView.as_view(), name="register"),
 
 
 ]

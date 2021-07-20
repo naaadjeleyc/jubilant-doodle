@@ -126,7 +126,10 @@ class City(models.Model):
 		verbose_name_plural = "cities"
 	
 	def __str__(self):
-		return "{}-{}".format(self.name, self.population)	
+		return "{}-{}".format(self.name, self.population)
+
+
+
 
 
 
