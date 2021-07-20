@@ -14,7 +14,7 @@ class Customer(models.Model):
 	address = models.TextField()
 
 	def __str__(self):
-		return f'{self.name}, {self.address}'
+		return self.name
 
 	class Meta:
 		db_table = 'customer'
