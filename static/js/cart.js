@@ -44,7 +44,7 @@ function addCookieItem(productId, action){
 	console.log('User is not authenticated')
 	if (action == 'add'){
 		if (cart[productId] == undefined){
-			cart[productId] = {'quantity':1}
+			cart[productId] = {'quantity':0}
 		}else{
 			cart[productId]['quantity'] += 1
 		}
@@ -56,7 +56,7 @@ function addCookieItem(productId, action){
 			delete cart[productId];
 		}
 	}
-	console.log('CART:', cart)
+	console.log('cart:', cart)
 	document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
 	location.reload()
 }

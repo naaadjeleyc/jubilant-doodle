@@ -9,6 +9,7 @@ import datetime
 
 
 
+
 def store(request):
 
 	if request.user.is_authenticated:
@@ -42,12 +43,13 @@ def cart(request):
 
 	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'store/cart.html', context)
+
 	
 def checkout(request):
 
 	if request.user.is_authenticated:
 		customer = request.user.customer
-		order, created = Order.objects.get_or_create(customer=customer, complete=False)
+		order, created = Order.objects.get_or_create(customer=customer, complete=True)
 		items = order.orderitem_set.all()
 		cartItems = order.get_cart_items
 	else:
@@ -85,6 +87,8 @@ def updateItem(request):
 		orderItem.delete()
 
 	return JsonResponse('Item was added', safe=False)	
+
+
 
 def processOrder(request):
 	transaction_id = datetime.datetime.now().timestamp()

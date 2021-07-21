@@ -32,7 +32,14 @@
         }
         return cookieValue;
     }
-	var csrftoken = getToken('csrftoken')
+	var csrftoken = getToken('csrftoken');
+    console.log('CRSFTOKEN:', csrftoken)
+    function getCookie(name){
+        var cookieArr = document.cookie.split(";");
+        for (var i =0; i < document.cookieArr.length; i++){
+            var cookiePair = cookieArr[i].split("=");
+        }
+    }
     </script>
 
     <title>{% block title %}  {% endblock title %}</title>
