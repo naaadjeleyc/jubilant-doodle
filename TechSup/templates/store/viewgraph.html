@@ -1,4 +1,4 @@
-{%extends 'store/base.html' %}
+{%extends 'store/graph.html' %}
 {% load static %}
 {%block title %} customers ranking {%endblock title %}
 
@@ -60,7 +60,10 @@ $(document).ready(function(){
                 
             </ul>
             <div class = "form-inline my-2 my-lg-0" >
+                <a href="{%url 'search' %}"class="btn botton">search</a>
+                
                 <a href="{%url 'store' %}"class="btn btn-primary">Back</a>
+                
             </div>
             </div>
     </div>

@@ -112,15 +112,15 @@ class ShippingAddress(models.Model):
 
 
 	
-class Country(models.Model):
-    name= models.CharField(max_length=30)
+
 	
 	
 	
 class City(models.Model):
 	name = models.CharField(max_length=30)
-	country = models.ForeignKey(Country, on_delete=models.CASCADE)
+	country = models.CharField(max_length=50)
 	population = models.PositiveIntegerField()
+	#country= models.CharField(max_length=30)
 
 	class Meta:
 		verbose_name_plural = "cities"

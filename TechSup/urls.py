@@ -15,6 +15,8 @@ urlpatterns = [
 
     url('search/', views.searchproducts, name="search"),
     path('process_order/',views.processOrder,name="process_order"),
+
+    
     
 
     
