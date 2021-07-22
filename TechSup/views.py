@@ -1,12 +1,10 @@
 import json
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView
 from django.shortcuts import render
-from django.http import JsonResponse, request
+from django.http import JsonResponse
 from .models import *
 import datetime
-import csv
-from django.http import HttpResponse
-from .utils import cookieCart, cartData, guestOrder
+from .utils import  cartData
 
 
 def store(request):
